@@ -1,4 +1,4 @@
-import static org.bbq.helloWorld
+import static org.bbq.helloWorld.*
 
 def call( String message ) {
   echo( 'Printing messasge' )
