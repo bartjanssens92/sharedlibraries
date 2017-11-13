@@ -3,14 +3,8 @@ package org.bbq;
 
 class hello implements Serializable {
 
-  private String name
-
-  def getName() {
-    name
-  }
-
   def sayHello() {
-    echo "Hello, ${name}!"
+    echo "Hello, world!"
   }
 
 } // class hello
