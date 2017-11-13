@@ -10,7 +10,7 @@ class helloWorld implements Serializable {
   }
 
   def sayHello() {
-    steps.node('master'){
+    steps{
       try {
         steps.sh ( script: "echo '" + this.message + "'" ).trim()
       }catch(error){
