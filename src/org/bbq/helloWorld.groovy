@@ -3,14 +3,14 @@ package org.bbq;
 
 class helloWorld implements Serializable {
   def steps
-  private String message
+  private String message = 'Hello, world!'
 
-  HelloWorld() {
+  helloWorld() {
     this.message = message
   }
 
   def sayHello() {
-    echo "Hello, world!"
+    println "Hello, world!"
   }
 
 } // class hello
