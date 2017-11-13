@@ -8,7 +8,7 @@ def call( body ) {
     stages {
       stage('First') {
         steps {
-          sh( "echo '$message'" )
+          sh( "echo '${config.message}'" )
         }
       } // stage First
     } // stages
