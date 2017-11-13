@@ -8,7 +8,7 @@ class helloWorld implements Serializable {
   // Constructor
   helloWorld() {
     this.message = message
-    this.steps = Steps
+    this.steps = steps
   }
 
   def sayHello() {
