@@ -13,6 +13,8 @@ class helloWorld implements Serializable {
     steps.node('master'){
       try {
         steps.sh ( script: "echo '" + this.message + "'" ).trim()
+      }catch(error){
+        steps.input message: "Error: " + error
       }
     }
   }
