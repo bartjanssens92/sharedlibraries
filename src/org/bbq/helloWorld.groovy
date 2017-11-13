@@ -1,7 +1,7 @@
 // HelloWorld
 package org.bbq;
 
-class hello implements Serializable {
+class helloWorld implements Serializable {
 
   def sayHello() {
     echo "Hello, world!"
