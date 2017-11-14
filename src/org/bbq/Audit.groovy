@@ -8,7 +8,7 @@ class Audit implements Serializable {
   def steps
   private String format = 'plain'
   private String target = 'logfile'
-  private String logfile = '/var/log/escalate'
+  private String logfile = '/var/log/escalate1'
 
   /**
    * Escalate: escalate an RFC with a comment
@@ -17,7 +17,7 @@ class Audit implements Serializable {
    * @param {string} target - the place where to point the escalation
    * @param {format} formate - the format to use for the message
    */
-  Audit( Steps, target ) {
+  Audit( Steps, target ){
     this.steps = Steps
     this.target = target
     this.format = format
@@ -31,8 +31,19 @@ class Audit implements Serializable {
   } // def escalate
 
   def writelogfile( String message ){
-    def f = new File(this.logfile)
-    f.append(message + '\n')
+    // Make sure the logfile exists
+    checklogfile()
+    // Get the date in epoch
+    def date = 'lol'
+    // Append to the log file
+    def f = new File( this.logfile )
+    f.append( message + '\n' )
   } // def writelog
 
-} // class Escalate
+  def checklogfile(){
+    if( ! new File( this.logfile ).isFile() ){
+      new File( this.logfile).createNewFile()
+    }
+  } // def checklogfile
+
+} // class Audit
