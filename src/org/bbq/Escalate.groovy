@@ -7,10 +7,11 @@ class Escalate implements Serializable {
 
   def steps
   def format = plain
+  def target = 'logfile'
   def logfile = '/var/log/escalate'
 
   // Constructor
-  Escalate( String target, format, logfile ) {
+  Escalate() {
     this.target = target
     this.format = format
     this.logfile = logfile
