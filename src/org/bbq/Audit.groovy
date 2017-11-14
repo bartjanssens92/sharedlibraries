@@ -8,7 +8,8 @@ class Audit implements Serializable {
   def steps
   private String format = 'plain'
   private String target = 'logfile'
-  private String logfile = '/var/log/escalate1'
+  private String date = new Date().format('yyyy-MM-dd').toString()
+  private String logfile = "/var/log/jenkins_auditlog/audit-${date}"
 
   /**
    * Escalate: escalate an RFC with a comment
@@ -34,10 +35,10 @@ class Audit implements Serializable {
     // Make sure the logfile exists
     checklogfile()
     // Get the date in epoch
-    def date = 'lol'
+    def dateepoch = System.currentTimeMillis().toString()
     // Append to the log file
     def f = new File( this.logfile )
-    f.append( message + '\n' )
+    f.append( dateepoch + ': ' + message + '\n' )
   } // def writelog
 
   def checklogfile(){
