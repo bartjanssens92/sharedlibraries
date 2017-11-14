@@ -24,7 +24,7 @@ class Escalate implements Serializable {
     this.logfile = logfile
   }
 
-  def escalate( String message ){
+  def call( String message ){
     if( this.target == 'logfile' ) {
       writelogfile( message )
     }
