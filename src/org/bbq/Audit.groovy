@@ -1,7 +1,8 @@
 // org.bbq.Audit.groovy
 package org.bbq
 
-import java.io.File // For writing to a log file
+// For writing to a log file
+import java.io.File
 
 class Audit implements Serializable {
 
@@ -15,8 +16,8 @@ class Audit implements Serializable {
    * Escalate: escalate an RFC with a comment
    *
    * @param {object} Steps - the steps object from the pipeline
-   * @param {string} target - the place where to point the escalation
-   * @param {format} formate - the format to use for the message
+   * @param {string} target - the place where to point the escalation ( defaults to logfile )
+   * @param {format} format - the format to use for the message ( defaults to plain )
    */
   Audit( Steps, target ){
     this.steps = Steps
@@ -38,7 +39,7 @@ class Audit implements Serializable {
     def dateepoch = System.currentTimeMillis().toString()
     // Append to the log file
     def f = new File( this.logfile )
-    f.append( dateepoch + ': ' + message + '\n' )
+    f.append( dateepoch + ': ' + env.JOB_NAME + ' ' + message + '\n' )
   } // def writelog
 
   def checklogfile(){
