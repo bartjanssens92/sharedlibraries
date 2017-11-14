@@ -8,6 +8,7 @@ class Audit implements Serializable {
 
   def steps
   def env
+  def currentbuild
   private String format = 'plain'
   private String target = 'logfile'
   private String date = new Date().format('yyyy-MM-dd').toString()
@@ -41,6 +42,7 @@ class Audit implements Serializable {
     // Append to the log file
     def f = new File( this.logfile )
     f.append( dateepoch + ': ' + env.JOB_NAME + ' ' + message + '\n' )
+    f.append( dateepoch + ': ' + env.JOB_NAME + " took ${currentbuild.duration} to build \n" )
   } // def writelog
 
   def checklogfile(){
