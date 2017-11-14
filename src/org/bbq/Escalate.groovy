@@ -23,7 +23,7 @@ class Escalate implements Serializable {
 
   def writelogfile( String message ){
     new File(this.logfile).withWriter('utf-8') {
-      writer => writer.writeLine message
+      writer -> writer.writeLine message
     }
   }
 
