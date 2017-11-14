@@ -6,11 +6,17 @@ import java.io.File // For writing to a log file
 class Escalate implements Serializable {
 
   def steps
-  def format = 'plain'
-  def target = 'logfile'
-  def logfile = '/var/log/escalate'
+  private String format = 'plain'
+  private String target = 'logfile'
+  private String logfile = '/var/log/escalate'
 
-  // Constructor
+  /**
+   * Escalate: escalate an RFC with a comment
+   *
+   * @param {object} Steps - the steps object from the pipeline
+   * @param {string} target - the place where to point the escalation
+   * @param {format} formate - the format to use for the message
+   */
   Escalate( Steps, target ) {
     this.steps = Steps
     this.target = target
