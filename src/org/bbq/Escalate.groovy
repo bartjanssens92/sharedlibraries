@@ -6,7 +6,7 @@ import java.io.File // For writing to a log file
 class Escalate implements Serializable {
 
   def steps
-  def format = plain
+  def format = 'plain'
   def target = 'logfile'
   def logfile = '/var/log/escalate'
 
