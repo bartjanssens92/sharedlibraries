@@ -15,7 +15,7 @@ class Setup implements Serializable {
   Setup() {
     def audit = new Audit( steps, 'logfile' )
     audit.env = env
-    audit.currentbuild = currentBuild
+    audit.currentbuild = currentbuild
   } // def
 
 } // class
