@@ -13,7 +13,9 @@ class Setup implements Serializable {
    * Setup: A class to setup all the needed objects
    */
   Setup() {
-    def escalate = new Escalate( steps )
+    def audit = new Audit( steps, 'logfile' )
+    audit.env = env
+    audit.currentbuild = currentBuild
   } // def
 
 } // class
