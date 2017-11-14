@@ -38,8 +38,8 @@ class Audit implements Serializable {
     switch( this.target ) {
       case "logfile":
         writelogfile( line )
-      case "print":
-        printmessage( line )
+      case "syslog":
+        writesyslog( line )
     }
   } // def audit
 
@@ -58,7 +58,7 @@ class Audit implements Serializable {
     }
   } // def checklogfile
 
-  def printmessage( String line ){
+  def writesyslog( String line ){
     System.out.println( line )
   } //def printmessage
 
