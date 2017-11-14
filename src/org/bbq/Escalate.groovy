@@ -31,8 +31,8 @@ class Escalate implements Serializable {
   } // def escalate
 
   def writelogfile( String message ){
-    file = new File(this.logfile)
-    file.append('\n' + message)
+    f = new File(this.logfile)
+    f.append('\n' + message)
   } // def writelog
 
 } // class Escalate
