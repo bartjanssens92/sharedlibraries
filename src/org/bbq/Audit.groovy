@@ -7,6 +7,7 @@ import java.io.File
 class Audit implements Serializable {
 
   def steps
+  def env
   private String format = 'plain'
   private String target = 'logfile'
   private String date = new Date().format('yyyy-MM-dd').toString()
@@ -39,7 +40,7 @@ class Audit implements Serializable {
     def dateepoch = System.currentTimeMillis().toString()
     // Append to the log file
     def f = new File( this.logfile )
-    f.append( dateepoch + ': ' + message + '\n' )
+    f.append( dateepoch + ': ' + env.JOB_NAME + ' ' + message + '\n' )
   } // def writelog
 
   def checklogfile(){
