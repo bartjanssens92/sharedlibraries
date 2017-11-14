@@ -59,7 +59,7 @@ class Audit implements Serializable {
   } // def checklogfile
 
   def printmessage( String line ){
-    sh( "echo $line" )
+    System.out.println( line )
   } //def printmessage
 
 } // class Audit
