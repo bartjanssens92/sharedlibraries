@@ -39,7 +39,7 @@ class Audit implements Serializable {
     def dateepoch = System.currentTimeMillis().toString()
     // Append to the log file
     def f = new File( this.logfile )
-    f.append( dateepoch + ': ' + env.JOB_NAME + ' ' + message + '\n' )
+    f.append( dateepoch + ': ' + steps.env.JOB_NAME + ' ' + message + '\n' )
   } // def writelog
 
   def checklogfile(){
