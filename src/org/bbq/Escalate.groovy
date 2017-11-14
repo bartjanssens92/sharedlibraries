@@ -1,4 +1,6 @@
 // org.bbq.Escalate.groovy
+package org.bbq
+
 import java.io.File // For writing to a log file
 
 class Escalate implements Serializable {
