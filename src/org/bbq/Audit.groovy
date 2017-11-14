@@ -1,9 +1,9 @@
-// org.bbq.Escalate.groovy
+// org.bbq.Audit.groovy
 package org.bbq
 
 import java.io.File // For writing to a log file
 
-class Escalate implements Serializable {
+class Audit implements Serializable {
 
   def steps
   private String format = 'plain'
@@ -17,7 +17,7 @@ class Escalate implements Serializable {
    * @param {string} target - the place where to point the escalation
    * @param {format} formate - the format to use for the message
    */
-  Escalate( Steps, target ) {
+  Audit( Steps, target ) {
     this.steps = Steps
     this.target = target
     this.format = format
@@ -32,7 +32,7 @@ class Escalate implements Serializable {
 
   def writelogfile( String message ){
     def f = new File(this.logfile)
-    f.append('\n' + message)
+    f.append(message + '\n')
   } // def writelog
 
 } // class Escalate
