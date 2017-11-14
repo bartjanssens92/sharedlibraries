@@ -29,20 +29,27 @@ class Audit implements Serializable {
   }
 
   def call( String message ){
-    if( this.target == 'logfile' ) {
-      writelogfile( message )
-    }
-  } // def escalate
-
-  def writelogfile( String message ){
-    // Make sure the logfile exists
-    checklogfile()
     // Get the date in epoch
     def dateepoch = System.currentTimeMillis().toString()
+    // Build the line to add
+    // Parameters available: everthing in the env and currentbuild objects
+    def line = "${dateepoch} : ${env.JOB_NAME} : ${message}"
+    // Figure out what to do with it
+    switch( this.target ) {
+      case "logfile":
+        writelogfile( line )
+      case "print":
+        printmessage( line )
+    }
+  } // def audit
+
+  def writelogfile( String line ){
+    // Make sure the logfile exists
+    checklogfile()
     // Append to the log file
     def f = new File( this.logfile )
-    f.append( dateepoch + ': ' + env.JOB_NAME + ' ' + message + '\n' )
-    f.append( dateepoch + ': ' + env.JOB_NAME + " took ${currentbuild.duration} to build \n" )
+    f.append( line + '\n' )
+    //f.append( dateepoch + ': ' + env.JOB_NAME + " took ${currentbuild.duration} to build \n" )
   } // def writelog
 
   def checklogfile(){
@@ -50,5 +57,9 @@ class Audit implements Serializable {
       new File( this.logfile).createNewFile()
     }
   } // def checklogfile
+
+  def printmessage( String line ){
+    println( line )
+  } //def printmessage
 
 } // class Audit
