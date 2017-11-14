@@ -20,11 +20,12 @@ class Escalate implements Serializable {
     if( this.target == 'logfile' ) {
       writelogfile( message )
     }
+  } // def escalate
 
   def writelogfile( String message ){
     new File(this.logfile).withWriter('utf-8') {
       writer -> writer.writeLine message
     }
-  }
+  } // def writelog
 
 } // class Escalate
