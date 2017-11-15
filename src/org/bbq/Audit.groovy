@@ -30,14 +30,15 @@ class Audit implements Serializable {
     this.steps = Steps
     this.mRfc = Rfc
     this.mDryrun = Dryrun
+    this.TestUsd = TestUsd
     this.target = target
     this.format = format
     this.logfile = logfile
-    this.change = new Change( this.steps, this.mRfc, this.mDryrun, this.TestUsd )
   }
 
   def call( String message ){
     //writeMessage( formLine( message ) )
+    def change = new Change( this.steps, this.mRfc, this.mDryrun, this.TestUsd )
     this.change.transfer( "grouptest", "me", message )
   } // def audit
 
