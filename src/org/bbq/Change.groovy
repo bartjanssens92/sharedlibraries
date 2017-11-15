@@ -7,9 +7,11 @@ class Change implements Serializable {
   private String rfc
   private String tenant
 
-  Change( Steps, Rfc ){
+  Change( Steps, Rfc, Dryrun, TestUsd ){
     this.steps = Steps
-    this.rfc = Rfc
+    this.mRfc = Rfc
+    this.mDryrun = Dryrun
+    this.mTestUsd = TestUsd
   }
 
   def transfer( group, assignee, comment ){
