@@ -13,7 +13,7 @@ class Change implements Serializable {
   }
 
   def transfer( group, assignee, comment ){
-    println( "TFC_transfer.sh -C ${tenant} -R ${this.rfc} -c ${comment} -g ${group} -a ${assignee} -t"
+    println( "TFC_transfer.sh -C ${tenant} -R ${this.rfc} -c ${comment} -g ${group} -a ${assignee} -t" )
   } // def transfer
 
 } //class
