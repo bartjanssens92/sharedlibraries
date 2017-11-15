@@ -12,6 +12,8 @@ class Audit implements Serializable {
   def steps
   def env
   def currentbuild
+  private Boolean mDryrun
+  private String mRfc
   private String format = 'plain'
   private String target = 'logfile'
   private String date = new Date().format('yyyy-MM-dd').toString()
@@ -24,8 +26,10 @@ class Audit implements Serializable {
    * @param {string} target - the place where to point the escalation ( defaults to logfile )
    * @param {format} format - the format to use for the message ( defaults to plain )
    */
-  Audit( Steps, target ){
+  Audit( Steps, Dryrun, Rfc, target ){
     this.steps = Steps
+    this.mRfc = Rfc
+    this.mDryrun = Dryrun
     this.target = target
     this.format = format
     this.logfile = logfile
