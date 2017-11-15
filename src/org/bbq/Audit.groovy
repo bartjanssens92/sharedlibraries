@@ -1,8 +1,11 @@
-// org.bbq.Audit.groovy
+// org/bbq/Audit.groovy
 package org.bbq
 
 // For writing to a log file
 import java.io.File
+
+// testing
+import org.bbq.Change
 
 class Audit implements Serializable {
 
@@ -15,7 +18,7 @@ class Audit implements Serializable {
   private String logfile = "/var/log/jenkins_auditlog/audit-${date}"
 
   /**
-   * Escalate: escalate an RFC with a comment
+   * Audit: log a message with a comment
    *
    * @param {object} Steps - the steps object from the pipeline
    * @param {string} target - the place where to point the escalation ( defaults to logfile )
@@ -29,7 +32,8 @@ class Audit implements Serializable {
   }
 
   def call( String message ){
-    writeMessage( formLine( message ) )
+    //writeMessage( formLine( message ) )
+    
   } // def audit
 
   def writeMessage( String line ){
