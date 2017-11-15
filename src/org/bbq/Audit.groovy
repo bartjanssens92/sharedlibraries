@@ -33,7 +33,7 @@ class Audit implements Serializable {
 
   def call( String message ){
     //writeMessage( formLine( message ) )
-    
+    change.transfer( "grouptest", "me", message )
   } // def audit
 
   def writeMessage( String line ){
