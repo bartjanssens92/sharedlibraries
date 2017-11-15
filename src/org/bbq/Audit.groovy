@@ -29,7 +29,10 @@ class Audit implements Serializable {
   }
 
   def call( String message ){
-    def line = formLine( message )
+    writeMessage( formLine( message ) )
+  } // def audit
+
+  def writeMessage( String line ){
     // Figure out what to do with it
     switch( this.target ) {
       case "logfile":
@@ -37,7 +40,11 @@ class Audit implements Serializable {
       case "syslog":
         writeSyslog( line )
     }
-  } // def audit
+  }
+
+  def user( String user ){
+    writeMessage( "User was created: ${user}" )
+  }
 
   def writeLogFile( String line ){
     // Make sure the logfile exists
@@ -65,10 +72,6 @@ class Audit implements Serializable {
     def line = "${dateepoch} : ${env.JOB_NAME} : ${message}"
     // Return the line
     return line
-  }
-
-  def user( String user ){
-    audit( "User was created: ${user}" )
   }
 
 } // class Audit
