@@ -43,7 +43,16 @@ class Audit implements Serializable {
   }
 
   def user( String user ){
-    writeMessage( "User was created: ${user}" )
+    writeMessage( formLine( "Created user: ${user}" ) )
+  }
+
+  def formLine( String message ){
+    def dateepoch = System.currentTimeMillis().toString()
+    // Build the line to add
+    // Parameters available: everthing in the env and currentbuild objects
+    def line = "${dateepoch} : ${env.JOB_NAME}_${currentbuild.id} : ${message}"
+    // Return the line
+    return line
   }
 
   def writeLogFile( String line ){
@@ -65,13 +74,5 @@ class Audit implements Serializable {
     System.out.println( line )
   } //def printmessage
 
-  def formLine( String message ){
-    def dateepoch = System.currentTimeMillis().toString()
-    // Build the line to add
-    // Parameters available: everthing in the env and currentbuild objects
-    def line = "${dateepoch} : ${env.JOB_NAME} : ${message}"
-    // Return the line
-    return line
-  }
 
 } // class Audit
