@@ -29,37 +29,46 @@ class Audit implements Serializable {
   }
 
   def call( String message ){
-    // Get the date in epoch
-    def dateepoch = System.currentTimeMillis().toString()
-    // Build the line to add
-    // Parameters available: everthing in the env and currentbuild objects
-    def line = "${dateepoch} : ${env.JOB_NAME} : ${message}"
+    def line = formLine( message )
     // Figure out what to do with it
     switch( this.target ) {
       case "logfile":
-        writelogfile( line )
+        writeLogFile( line )
       case "syslog":
-        writesyslog( line )
+        writeSyslog( line )
     }
   } // def audit
 
-  def writelogfile( String line ){
+  def writeLogFile( String line ){
     // Make sure the logfile exists
-    checklogfile()
+    checkLogFile()
     // Append to the log file
     def f = new File( this.logfile )
     f.append( line + '\n' )
     //f.append( dateepoch + ': ' + env.JOB_NAME + " took ${currentbuild.duration} to build \n" )
   } // def writelog
 
-  def checklogfile(){
+  def checkLogFile(){
     if( ! new File( this.logfile ).isFile() ){
       new File( this.logfile).createNewFile()
     }
   } // def checklogfile
 
-  def writesyslog( String line ){
+  def writeSyslog( String line ){
     System.out.println( line )
   } //def printmessage
+
+  def formLine( String message ){
+    def dateepoch = System.currentTimeMillis().toString()
+    // Build the line to add
+    // Parameters available: everthing in the env and currentbuild objects
+    def line = "${dateepoch} : ${env.JOB_NAME} : ${message}"
+    // Return the line
+    return line
+  }
+
+  def user( String user ){
+    audit( "User was created: ${user}" )
+  }
 
 } // class Audit
