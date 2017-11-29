@@ -23,11 +23,11 @@ class Audit implements Serializable {
    * @param {string} target - the place where to point the escalation ( defaults to logfile )
    * @param {format} format - the format to use for the message ( defaults to plain )
    */
-  Audit( Steps, Dryrun, Rfc, target ){
+  Audit( Steps, target ){
     this.steps = Steps
     this.mRfc = Rfc
-    this.mDryrun = Dryrun
-    this.TestUsd = TestUsd
+    //this.mDryrun = Dryrun
+    //this.TestUsd = TestUsd
     this.target = target
     this.format = format
     this.logfile = logfile
