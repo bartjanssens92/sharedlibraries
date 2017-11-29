@@ -31,6 +31,9 @@ class Escalate implements Serializable {
       case "argentaComponent":
         change.transfer( "", "", message )
         break
+      case "reject":
+        change.changeStatus( 'rejected', message )
+        break
   } // call
 
 } //class

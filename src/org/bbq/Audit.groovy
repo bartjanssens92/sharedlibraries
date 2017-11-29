@@ -4,9 +4,6 @@ package org.bbq
 // For writing to a log file
 import java.io.File
 
-// testing
-import org.bbq.Change
-
 class Audit implements Serializable {
 
   def steps
@@ -37,9 +34,7 @@ class Audit implements Serializable {
   }
 
   def call( String message ){
-    //writeMessage( formLine( message ) )
-    def change = new Change( this.steps, this.mRfc, this.mDryrun, this.TestUsd )
-    this.change.transfer( "grouptest", "me", message )
+    writeMessage( formLine( message ) )
   } // def audit
 
   def writeMessage( String line ){
